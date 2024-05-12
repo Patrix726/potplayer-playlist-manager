@@ -15,4 +15,4 @@ if __name__ == "__main__":
         change_playlist(picked_playlist)
 
     process = start_program(PROGRAM_PATH)
-    monitor_and_execute(process, save_playlist)
+    monitor_and_execute(process)
