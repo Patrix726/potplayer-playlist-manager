@@ -1,6 +1,7 @@
 import subprocess
 import potplayer
 import os
+import curses
 
 DEFAULT_PLAYLIST = (
     r"C:\Users\PATRIX\AppData\Roaming\PotPlayerMini64\Playlist\PotPlayerMini64.dpl"
@@ -11,23 +12,44 @@ STORAGE_PATH = (
 )
 
 
-def pick_playlist():
-    print("Current Pot Player Playlists:")
+def pick_playlist(stdscr):
     playlists = os.listdir(STORAGE_PATH)
-    for k, v in enumerate(playlists):
-        print(k, v)
-
-    if len(playlists) > 1:
-        selected_ind = int(input("Enter the index of a playlist: "))
-        return playlists[selected_ind]
+    if len(playlists) == 0:
+        return None
     elif len(playlists) == 1:
         return playlists[0]
-    else:
-        return None
+    curses.curs_set(0)  # Hide the cursor
+    stdscr.clear()  # Clear the screen
+    stdscr.addstr("Current Pot Player Playlists:")
+    # print("Current Pot Player Playlists:")
+    selected_ind = 0
+    while True:
+        for index, option in enumerate(playlists):
+            if index == selected_ind:
+                stdscr.addstr(index + 1, 0, f"> {option}", curses.A_REVERSE)
+            else:
+                stdscr.addstr(index + 1, 0, f"  {option}")
+
+        stdscr.refresh()
+
+        # Get user input
+        key = stdscr.getch()
+
+        # Handle user input
+        if key == curses.KEY_DOWN:
+            selected_ind = min(selected_ind + 1, len(playlists) - 1)
+        elif key == curses.KEY_UP:
+            selected_ind = max(selected_ind - 1, 0)
+        elif key == curses.KEY_ENTER or key in [10, 13]:  # Handle Enter key
+            break
+
+    # Print the selected option
+    stdscr.clear()
+    return playlists[selected_ind]
 
 
 def start_program(program_path):
-    return subprocess.Popen(program_path)
+    return subprocess.Popen([program_path])
 
 
 def change_playlist(path):
