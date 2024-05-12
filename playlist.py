@@ -37,10 +37,9 @@ def change_playlist(path):
         playlist.dump(DEFAULT_PLAYLIST)
 
 
-def monitor_and_execute(process, task_function):
+def monitor_and_execute(process):
     process.wait()  # Wait for the process to terminate
     print("Process has terminated.")
-    task_function()  # Perform the task when the process is terminated
 
 
 def save_playlist():

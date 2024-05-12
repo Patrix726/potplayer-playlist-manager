@@ -16,6 +16,7 @@ def monitor_file(file_path):
     observer = Observer()
     observer.schedule(event_handler, path=file_path, recursive=True)
     observer.start()
+    print("Watching...")
     try:
         while True:
             time.sleep(1)
