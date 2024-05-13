@@ -3,7 +3,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from playlist import save_playlist
 
-DEFAULT_PLAYLIST = r"C:\Users\PATRIX\AppData\Roaming\PotPlayerMini64\Playlist"
+DEFAULT_PLAYLIST_FOLDER = r"C:\Users\PATRIX\AppData\Roaming\PotPlayerMini64\Playlist"
 
 
 class FileChangeHandler(FileSystemEventHandler):
@@ -26,4 +26,4 @@ def monitor_file(file_path):
 
 
 if __name__ == "__main__":
-    monitor_file(DEFAULT_PLAYLIST)
+    monitor_file(DEFAULT_PLAYLIST_FOLDER)
