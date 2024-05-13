@@ -19,6 +19,3 @@ if __name__ == "__main__":
         change_playlist(picked_playlist)
 
     process = start_program(PROGRAM_PATH)
-    time.sleep(10)
-    # potplayer.run(DEFAULT_PLAYLIST)
-    # monitor_and_execute(process)

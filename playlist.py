@@ -20,10 +20,10 @@ def pick_playlist(stdscr):
         return playlists[0]
     curses.curs_set(0)  # Hide the cursor
     stdscr.clear()  # Clear the screen
-    stdscr.addstr("Current Pot Player Playlists:")
-    # print("Current Pot Player Playlists:")
+
     selected_ind = 0
     while True:
+        stdscr.addstr("Current Pot Player Playlists:")
         for index, option in enumerate(playlists):
             if index == selected_ind:
                 stdscr.addstr(index + 1, 0, f"> {option}", curses.A_REVERSE)
@@ -40,10 +40,13 @@ def pick_playlist(stdscr):
             selected_ind = min(selected_ind + 1, len(playlists) - 1)
         elif key == curses.KEY_UP:
             selected_ind = max(selected_ind - 1, 0)
+        elif key == curses.KEY_DC:
+            os.remove(os.path.join(STORAGE_PATH, playlists[selected_ind]))
+            playlists.pop(selected_ind)
         elif key == curses.KEY_ENTER or key in [10, 13]:  # Handle Enter key
             break
+        stdscr.clear()
 
-    # Print the selected option
     stdscr.clear()
     return playlists[selected_ind]
 
