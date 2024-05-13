@@ -10,6 +10,7 @@ PROGRAM_PATH = r"C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe"
 STORAGE_PATH = (
     "C:\\Users\\PATRIX\\Documents\\Code\\Python\\potplayer-playlist\\playlists\\"
 )
+WORKING_DIR = "C:\\Users\\PATRIX\\Documents\\Code\\Python\\potplayer-playlist\\"
 
 
 def pick_playlist(stdscr):
@@ -75,6 +76,21 @@ def save_playlist():
 
     # find out the path of the files inside the playlist
     parent_folder = os.path.dirname(playlist.file_list[0])
+
+    # exception.txt file  path
+    exception_file = "".join([WORKING_DIR, "exceptions.txt"])
+
+    with open(exception_file, "r") as f:
+        for path in f.readlines():
+            try:
+                # find the common path between the exception path and the playlist
+                common_path = os.path.commonpath([os.path.abspath(path), parent_folder])
+
+                # if the common path is the same as the exception path don't save the playlistS
+                if common_path == path:
+                    return
+            except:
+                continue
 
     # join the two parent directories for optimum naming
     parent_folder = ".".join(parent_folder.split("\\")[-2:])
