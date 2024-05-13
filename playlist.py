@@ -20,18 +20,17 @@ def pick_playlist(stdscr):
         return playlists[0]
     curses.curs_set(0)  # Hide the cursor
     stdscr.clear()  # Clear the screen
-
     selected_ind = 0
     while True:
         stdscr.addstr("Current Pot Player Playlists:")
-        for index, option in enumerate(playlists):
+        for index, playlist in enumerate(playlists):
+            playlist = playlist.rstrip(".dpl")
             if index == selected_ind:
-                stdscr.addstr(index + 1, 0, f"> {option}", curses.A_REVERSE)
+                stdscr.addstr(index + 1, 0, f"> {playlist}", curses.A_REVERSE)
             else:
-                stdscr.addstr(index + 1, 0, f"  {option}")
+                stdscr.addstr(index + 1, 0, f"  {playlist}")
 
         stdscr.refresh()
-
         # Get user input
         key = stdscr.getch()
 
@@ -71,6 +70,6 @@ def save_playlist():
     with open(DEFAULT_PLAYLIST, "r") as f:
         playlist = potplayer.PlayList.load(DEFAULT_PLAYLIST)
         parent_folder = os.path.dirname(playlist.file_list[0])
-        parent_folder = parent_folder.split("\\")[-1]
+        parent_folder = ".".join(parent_folder.split("\\")[-2:])
         playlist.header = parent_folder
         playlist.dump("{0}{1}".format(STORAGE_PATH, parent_folder))
