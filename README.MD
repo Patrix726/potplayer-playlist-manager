@@ -55,7 +55,18 @@ Enjoy a user-friendly CLI interface that makes navigating and managing playlists
      C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
      ```
      Replace `username` with your actual username. Then, copy `hidePotWatcher.vbs` into this folder. Upon system startup, `hidePotWatcher.vbs` will execute automatically, ensuring that the PotPlayer Playlist Watcher is always running in the background, ready to detect playlist changes.
+#### Note: To execute the script from any location, consider adding the folder containing the script to your system's PATH environment variable.
 
+
+1. Open the Start menu and search for "Environment Variables".
+2. Click on "Edit the system environment variables".
+3. In the System Properties window, click on the "Environment Variables" button.
+4. Under "System variables", select the "Path" variable and click "Edit".
+5. Add the folder containing your script to the list of paths, separated by semicolons (`;`). For example, `C:\path\to\your\folder`.
+6. Click "OK" to save the changes.
+
+
+After adding the folder to your PATH, you can execute the script from any location without specifying its absolute path.
 
 ## Contributing
 Contributions are welcome! If you have any ideas for improvements or new features, feel free to open an issue or submit a pull request.
