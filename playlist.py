@@ -3,14 +3,11 @@ import potplayer
 import os
 import curses
 
-DEFAULT_PLAYLIST = (
-    r"C:\Users\PATRIX\AppData\Roaming\PotPlayerMini64\Playlist\PotPlayerMini64.dpl"
-)
+USERNAME = os.environ["USERNAME"]
+DEFAULT_PLAYLIST = f"C:\\Users\\{USERNAME}\\AppData\\Roaming\\PotPlayerMini64\\Playlist\\PotPlayerMini64.dpl"
 PROGRAM_PATH = r"C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe"
-STORAGE_PATH = (
-    "C:\\Users\\PATRIX\\Documents\\Code\\Python\\potplayer-playlist\\playlists\\"
-)
-WORKING_DIR = "C:\\Users\\PATRIX\\Documents\\Code\\Python\\potplayer-playlist\\"
+WORKING_DIR = os.path.dirname(__file__)
+STORAGE_PATH = os.path.join(WORKING_DIR, "playlists")
 
 
 def pick_playlist(stdscr):

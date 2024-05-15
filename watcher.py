@@ -1,9 +1,11 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from playlist import save_playlist
+from playlist import save_playlist, USERNAME
 
-DEFAULT_PLAYLIST_FOLDER = r"C:\Users\PATRIX\AppData\Roaming\PotPlayerMini64\Playlist"
+DEFAULT_PLAYLIST_FOLDER = (
+    f"C:\\Users\\{USERNAME}\\AppData\\Roaming\\PotPlayerMini64\\Playlist"
+)
 
 
 class FileChangeHandler(FileSystemEventHandler):

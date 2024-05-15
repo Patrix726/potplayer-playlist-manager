@@ -1,1 +1,1 @@
-python C:\Users\PATRIX\Documents\Code\Python\potplayer-playlist\watcher.py
+python ./watcher.py

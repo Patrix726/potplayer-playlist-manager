@@ -1,1 +1,1 @@
-python C:\Users\PATRIX\Documents\Code\Python\potplayer-playlist\main.py
+python ./main.py
