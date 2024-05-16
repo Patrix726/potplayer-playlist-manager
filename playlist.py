@@ -7,7 +7,7 @@ USERNAME = os.environ["USERNAME"]
 DEFAULT_PLAYLIST = f"C:\\Users\\{USERNAME}\\AppData\\Roaming\\PotPlayerMini64\\Playlist\\PotPlayerMini64.dpl"
 PROGRAM_PATH = r"C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe"
 WORKING_DIR = os.path.dirname(__file__)
-STORAGE_PATH = os.path.join(WORKING_DIR, "playlists")
+STORAGE_PATH = os.path.join(WORKING_DIR, "playlists\\")
 
 
 def pick_playlist(stdscr):
@@ -75,7 +75,7 @@ def save_playlist():
     parent_folder = os.path.dirname(playlist.file_list[0])
 
     # exception.txt file  path
-    exception_file = "".join([WORKING_DIR, "exceptions.txt"])
+    exception_file = "".join([WORKING_DIR, "\\exceptions.txt"])
 
     with open(exception_file, "r") as f:
         for path in f.readlines():
